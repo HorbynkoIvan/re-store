@@ -1,10 +1,12 @@
 import React from 'react';
-import Spinner from "../spinner";
+import Spinner from "../spinner/spinner";
+import ErrorIndicator from "../error-indicator/error-indicator";
 
 function App() {
   return (
     <div>
-      <Spinner/>
+ {/*     <Spinner/>*/}
+      <ErrorIndicator/>
     </div>
   );
 }
