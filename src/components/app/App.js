@@ -1,8 +1,10 @@
 import React from 'react';
+import Spinner from "../spinner";
 
 function App() {
   return (
-    <div>App
+    <div>
+      <Spinner/>
     </div>
   );
 }
