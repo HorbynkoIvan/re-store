@@ -1,6 +1,6 @@
 import React from 'react';
 import Spinner from "../spinner/spinner";
-import ErrorIndicator from "../error-indicator/error-indicator";
+import ErrorIndicator from "../error-indicator";
 
 function App() {
   return (
