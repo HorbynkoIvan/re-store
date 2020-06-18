@@ -1,5 +1,16 @@
 const initialState = {
-    books: []
+    books: [
+        {
+            id: 1,
+            title: "Production-ready microservices",
+            author: 'Susan J. Fowler'
+        },
+        {
+            id: 2,
+            title: "Release It!",
+            author: 'Michael Nygard'
+        }
+    ]
 }
 
 const reducer = (state = initialState, action) => {
