@@ -1,10 +1,15 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
+import styled from "styled-components";
 
 import {withBookstoreService} from "../hoc";
 import {booksLoaded} from "../../actions";
 import {compose} from "../../utils"
 import BookListItem from "../book-list-item";
+
+const BookListStyled = styled.ul`
+  list-style: none;
+`
 
 class BookList extends Component {
     componentDidMount() {
@@ -18,7 +23,7 @@ class BookList extends Component {
     render() {
         const {books} = this.props;
         return (
-            <ul>
+            <BookListStyled>
                 {books.map((book) => {
                     return (
                         <li key={book.id}>
@@ -26,7 +31,7 @@ class BookList extends Component {
                         </li>
                     )
                 })}
-            </ul>
+            </BookListStyled>
         )
 
     }
