@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 
 const BookListItemStyled = styled.div`
   display: flex;
@@ -34,7 +35,7 @@ const BookListItem = ({book}) => {
                 <img src={coverImage} alt=""/>
             </div>
             <div className="book-details">
-                <a href="#" className="book-title">{title}</a>
+                <Link to="/" className="book-title">{title}</Link>
                 <div className="book-author">{author}</div>
                 <div className="book-price">{price}$</div>
                 <button className="btn btn-info">Add to card</button>

@@ -1,5 +1,6 @@
-import React, {Component} from "react";
+import React from "react";
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 
 const HeaderStyled = styled.header`
   display: flex;
@@ -26,10 +27,10 @@ const HeaderStyled = styled.header`
 const ShopHeader = ({numItem, total}) => {
     return (
         <HeaderStyled className="row">
-            <a href="#" className="logo text-dark">Restore</a>
-            <a href="#" className="shopping-cart">
+            <Link to="/" className="logo text-dark">Restore</Link>
+            <Link to="/card" className="shopping-cart">
                 <i className="cart-icon fa fa-shopping-cart">{numItem} items (${total})</i>
-            </a>
+            </Link>
         </HeaderStyled>
     )
 }

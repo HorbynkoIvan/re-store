@@ -6,6 +6,7 @@ import {withBookstoreService} from "../hoc";
 import {booksLoaded} from "../../actions";
 import {compose} from "../../utils"
 import BookListItem from "../book-list-item";
+import Spinner from "../spinner/spinner";
 
 const BookListStyled = styled.ul`
   list-style: none;
@@ -19,7 +20,8 @@ class BookList extends Component {
     }
 
     render() {
-        const {books} = this.props;
+        const {books, loading} = this.props;
+        if(loading) return <Spinner/>
         return (
             <BookListStyled>
                 {books.map((book) => {
@@ -37,7 +39,8 @@ class BookList extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        books: state.books
+        books: state.books,
+        loading: state.loading
     }
 }
 

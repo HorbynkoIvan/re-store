@@ -7,8 +7,8 @@ import ShopHeader from "../shop-header";
 const App = () => {
     return (
         <main role="main" className="container">
-            <ShopHeader numItems={20} total={5}/>
             <Router>
+                <ShopHeader numItems={20} total={5}/>
                 <Switch>
                     <Route path="/" component={HomePage} exact/>
                     <Route path="/card" component={CardPage}/>
