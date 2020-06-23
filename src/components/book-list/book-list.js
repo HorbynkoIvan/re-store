@@ -13,11 +13,9 @@ const BookListStyled = styled.ul`
 
 class BookList extends Component {
     componentDidMount() {
-        const {bookstoreService} = this.props;
-        const data = bookstoreService.getBooks();
-        console.log(data)
-
-        this.props.booksLoaded(data);
+        const {bookstoreService, booksLoaded} = this.props;
+        bookstoreService.getBooks()
+            .then((data) => booksLoaded(data));
     }
 
     render() {
