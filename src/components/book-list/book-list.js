@@ -3,10 +3,11 @@ import {connect} from "react-redux";
 import styled from "styled-components";
 
 import {withBookstoreService} from "../hoc";
-import {booksLoaded, booksRequested} from "../../actions";
+import {booksLoaded, booksRequested, booksError} from "../../actions";
 import {compose} from "../../utils"
 import BookListItem from "../book-list-item";
 import Spinner from "../spinner/spinner";
+import ErrorIndicator from "../error-indicator";
 
 const BookListStyled = styled.ul`
   list-style: none;
@@ -14,15 +15,17 @@ const BookListStyled = styled.ul`
 
 class BookList extends Component {
     componentDidMount() {
-        const {bookstoreService, booksLoaded, booksRequested} = this.props;
+        const {bookstoreService, booksLoaded, booksRequested, booksError} = this.props;
         booksRequested();
         bookstoreService.getBooks()
-            .then((data) => booksLoaded(data));
+            .then((data) => booksLoaded(data))
+            .catch((error) => booksError(error))
     }
 
     render() {
-        const {books, loading} = this.props;
-        if(loading) return <Spinner/>
+        const {books, loading, error} = this.props;
+        if (loading) return <Spinner/>
+        if (error) return <ErrorIndicator/>
         return (
             <BookListStyled>
                 {books.map((book) => {
@@ -41,13 +44,15 @@ class BookList extends Component {
 const mapStateToProps = (state) => {
     return {
         books: state.books,
-        loading: state.loading
+        loading: state.loading,
+        error: state.error
     }
 }
 
 const mapDispatchToProps = {
     booksLoaded,
-    booksRequested
+    booksRequested,
+    booksError
 }
 
 export default compose(
