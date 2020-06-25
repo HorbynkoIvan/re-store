@@ -7,13 +7,13 @@ const BookListStyled = styled.ul`
   list-style: none;
 `
 
-const BookList = ({books}) => {
+const BookList = ({books, onAddedToCard}) => {
     return (
         <BookListStyled>
             {books.map((book) => {
                 return (
                     <li key={book.id}>
-                        <BookListItem book={book}/>
+                        <BookListItem book={book} onAddedToCard={onAddedToCard}/>
                     </li>
                 )
             })}

@@ -27,8 +27,8 @@ const BookListItemStyled = styled.div`
   }
 `
 
-const BookListItem = ({book}) => {
-    const {title, author, price, coverImage} = book;
+const BookListItem = ({book, onAddedToCard}) => {
+    const {id, title, author, price, coverImage} = book;
     return (
         <BookListItemStyled>
             <div className="book-cover">
@@ -38,7 +38,10 @@ const BookListItem = ({book}) => {
                 <Link to="/" className="book-title">{title}</Link>
                 <div className="book-author">{author}</div>
                 <div className="book-price">{price}$</div>
-                <button className="btn btn-info">Add to card</button>
+                <button
+                    onClick={() => onAddedToCard(id)}
+                    className="btn btn-info">Add to card
+                </button>
             </div>
         </BookListItemStyled>
     )
