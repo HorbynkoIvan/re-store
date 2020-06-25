@@ -19,20 +19,22 @@ const ShoppingCartTable = ({items, total, onIncrease, onDecrease, onDelete}) => 
         const {id, name, count, total} = item;
         return (
             <tr key={id}>
-                <td>{idx}</td>
+                <td>{idx + 1}</td>
                 <td>{name}</td>
                 <td>{count}</td>
                 <td>{total}$</td>
                 <td>
-                    <button onClick={onIncrease(id)} className="btn btn-outline-danger btn-small">
-                        <i className="fa fa-trash" aria-hidden="true"></i>
-                    </button>
-                    <button onClick={onDecrease(id)} className="btn btn-outline-success btn-small">
+                    <button onClick={() => onIncrease(id)} className="btn btn-outline-success btn-small">
                         <i className="fa fa-plus-circle"/>
                     </button>
-                    <button onClick={onDelete(id)} className="btn btn-outline-warning btn-small">
+                    <button onClick={() =>  onDecrease(id)} className="btn btn-outline-warning btn-small">
                         <i className="fa fa-minus-circle"/>
                     </button>
+                    <button onClick={() => onDelete(id)} className="btn btn-outline-danger btn-small">
+                        <i className="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+
+
                 </td>
             </tr>
         )
@@ -57,7 +59,7 @@ const ShoppingCartTable = ({items, total, onIncrease, onDecrease, onDelete}) => 
             </table>
 
             <div className="total">
-                Total: 205$
+                Total: {total}$
             </div>
         </ShoppingCartTableStyled>
     )
@@ -70,6 +72,12 @@ const mapStateToProps = (state) => {
     }
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = () => {
+    return {
+        onIncrease: (id) => console.log("onIncrease " + id),
+        onDecrease: (id) => console.log("onDecrease " + id),
+        onDelete: (id) => console.log("onDelete " + id),
+    }
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCartTable);
