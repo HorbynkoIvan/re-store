@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import {connect} from "react-redux";
 
 const ShoppingCartTableStyled = styled.div`
   .total{
@@ -13,7 +14,29 @@ const ShoppingCartTableStyled = styled.div`
   }
 `
 
-const ShoppingCartTable = ({numItem, total}) => {
+const ShoppingCartTable = ({items, total, onIncrease, onDecrease, onDelete}) => {
+    const renderRow = (item, idx) => {
+        const {id, name, count, total} = item;
+        return (
+            <tr key={id}>
+                <td>{idx}</td>
+                <td>{name}</td>
+                <td>{count}</td>
+                <td>{total}$</td>
+                <td>
+                    <button onClick={onIncrease(id)} className="btn btn-outline-danger btn-small">
+                        <i className="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                    <button onClick={onDecrease(id)} className="btn btn-outline-success btn-small">
+                        <i className="fa fa-plus-circle"/>
+                    </button>
+                    <button onClick={onDelete(id)} className="btn btn-outline-warning btn-small">
+                        <i className="fa fa-minus-circle"/>
+                    </button>
+                </td>
+            </tr>
+        )
+    }
     return (
         <ShoppingCartTableStyled>
             <h2>Your order</h2>
@@ -29,23 +52,7 @@ const ShoppingCartTable = ({numItem, total}) => {
                 </thead>
 
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Site Reliability Engineering</td>
-                    <td>2</td>
-                    <td>40$</td>
-                    <td>
-                        <button className="btn btn-outline-danger btn-small">
-                            <i className="fa fa-trash" aria-hidden="true"></i>
-                        </button>
-                        <button className="btn btn-outline-success btn-small">
-                            <i className="fa fa-plus-circle"/>
-                        </button>
-                        <button className="btn btn-outline-warning btn-small">
-                            <i className="fa fa-minus-circle"/>
-                        </button>
-                    </td>
-                </tr>
+                {items.map(renderRow)}
                 </tbody>
             </table>
 
@@ -56,4 +63,13 @@ const ShoppingCartTable = ({numItem, total}) => {
     )
 }
 
-export default ShoppingCartTable;
+const mapStateToProps = (state) => {
+    return {
+        items: state.cardItems,
+        total: state.orderTotal,
+    }
+};
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCartTable);
