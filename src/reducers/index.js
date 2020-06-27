@@ -64,7 +64,12 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 cardItems: updateCardItems(state.cardItems, newItem, bookInCardIndex)
             }
-
+        case 'BOOKS_COUNT_INCREASE_IN_CARD':
+            return {};
+        case 'BOOKS_COUNT_DECREASE_IN_CARD':
+            return {};
+        case 'BOOKS_REMOVE_IN_CARD':
+            return {}
         default:
             return state;
     }

@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import {connect} from "react-redux";
 
+import {booksCountIncrease, booksCountDecrease, booksRemove} from "../../actions"
+
 const ShoppingCartTableStyled = styled.div`
   .total{
     text-align: right;
@@ -27,7 +29,7 @@ const ShoppingCartTable = ({items, total, onIncrease, onDecrease, onDelete}) => 
                     <button onClick={() => onIncrease(id)} className="btn btn-outline-success btn-small">
                         <i className="fa fa-plus-circle"/>
                     </button>
-                    <button onClick={() =>  onDecrease(id)} className="btn btn-outline-warning btn-small">
+                    <button onClick={() => onDecrease(id)} className="btn btn-outline-warning btn-small">
                         <i className="fa fa-minus-circle"/>
                     </button>
                     <button onClick={() => onDelete(id)} className="btn btn-outline-danger btn-small">
@@ -72,11 +74,11 @@ const mapStateToProps = (state) => {
     }
 };
 
-const mapDispatchToProps = () => {
+const mapDispatchToProps = (dispatch) => {
     return {
-        onIncrease: (id) => console.log("onIncrease " + id),
-        onDecrease: (id) => console.log("onDecrease " + id),
-        onDelete: (id) => console.log("onDelete " + id),
+        onIncrease: (id) => dispatch(booksCountIncrease(id)),
+        onDecrease: (id) => dispatch(booksCountDecrease(id)),
+        onDelete: (id) => dispatch(booksRemove(id)),
     }
 };
 

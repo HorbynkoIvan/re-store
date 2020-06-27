@@ -25,6 +25,27 @@ const bookAddedToCard = (bookId) => {
     }
 }
 
+const booksCountIncrease = (bookId) => {
+    return {
+        type: "BOOKS_COUNT_INCREASE_IN_CARD",
+        payload: bookId
+    }
+}
+
+const booksCountDecrease = (bookId) => {
+    return {
+        type: "BOOKS_COUNT_DECREASE_IN_CARD",
+        payload: bookId
+    }
+}
+
+const booksRemove = (bookId) => {
+    return {
+        type: "BOOKS_REMOVE_IN_CARD",
+        payload: bookId
+    }
+}
+
 const fetchBooks = (dispatch, bookstoreService) => () => {
     dispatch(booksRequested())
     bookstoreService.getBooks()
@@ -32,4 +53,4 @@ const fetchBooks = (dispatch, bookstoreService) => () => {
         .catch((error) => dispatch(booksError(error)))
 }
 
-export {fetchBooks, bookAddedToCard};
+export {fetchBooks, bookAddedToCard, booksCountIncrease, booksCountDecrease, booksRemove};
