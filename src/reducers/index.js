@@ -55,14 +55,14 @@ const reducer = (state = initialState, action) => {
         case 'BOOK_ADDED_TO_CARD':
             const bookId = action.payload;
             const book = state.books.find((item) => item.id === bookId);
-            const itemIndex = state.cardItems.findIndex((card) => card.id === bookId);
-            const item = state.cardItems[itemIndex]; //return already exist card
+            const bookInCardIndex = state.cardItems.findIndex((card) => card.id === bookId);
+            const bookInCard = state.cardItems[bookInCardIndex]; //return already exist card
 
-            const newItem = updateCardItem(book, item);
+            const newItem = updateCardItem(book, bookInCard);
 
             return {
                 ...state,
-                cardItems: updateCardItems(state.cardItems, newItem, itemIndex)
+                cardItems: updateCardItems(state.cardItems, newItem, bookInCardIndex)
             }
 
         default:
