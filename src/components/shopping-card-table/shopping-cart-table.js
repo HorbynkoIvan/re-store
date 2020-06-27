@@ -17,7 +17,6 @@ const ShoppingCartTableStyled = styled.div`
 const ShoppingCartTable = ({items, total, onIncrease, onDecrease, onDelete}) => {
     const renderRow = (item, idx) => {
         const {id, title, count, total} = item;
-        debugger
         return (
             <tr key={id}>
                 <td>{idx + 1}</td>

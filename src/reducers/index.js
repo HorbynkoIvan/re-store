@@ -10,6 +10,21 @@ const updateCardItems = (cardItems, item, idx) => {
     }
 }
 
+const updateCardItem = (book, item = {}) => {
+    const {
+        id = book.id,
+        title = book.title,
+        count = 0,
+        total = 0
+    } = item;
+    return {
+        id,
+        title,
+        count: count + 1,
+        total: total + book.price
+    }
+}
+
 const initialState = {
     books: [],
     loading: true,
@@ -43,25 +58,11 @@ const reducer = (state = initialState, action) => {
             const itemIndex = state.cardItems.findIndex((card) => card.id === bookId);
             const item = state.cardItems[itemIndex]; //return already exist card
 
-            let newItem = {};
-            if (item) {
-                newItem = {
-                    ...item,
-                    count: item.count + 1,
-                    total: item.total + book.price
-                }
-            } else {
-                newItem = {
-                    id: book.id,
-                    title: book.title,
-                    count: 1,
-                    total: book.price
-                }
-            }
+            const newItem = updateCardItem(book, item);
+
             return {
                 ...state,
-                cardItems: updateCardItems(state.cardItems, item, itemIndex)
-
+                cardItems: updateCardItems(state.cardItems, newItem, itemIndex)
             }
 
         default:
