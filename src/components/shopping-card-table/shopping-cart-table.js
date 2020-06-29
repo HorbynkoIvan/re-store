@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import {connect} from "react-redux";
 
-import {booksCountIncrease, booksCountDecrease, booksRemove} from "../../actions"
+import {bookAddedToCard, booksCountDecrease, booksRemove} from "../../actions"
 
 const ShoppingCartTableStyled = styled.div`
   .total{
@@ -74,12 +74,10 @@ const mapStateToProps = (state) => {
     }
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onIncrease: (id) => dispatch(booksCountIncrease(id)),
-        onDecrease: (id) => dispatch(booksCountDecrease(id)),
-        onDelete: (id) => dispatch(booksRemove(id)),
-    }
+const mapDispatchToProps = {
+    onIncrease: bookAddedToCard,
+    onDecrease: booksCountDecrease,
+    onDelete: booksRemove,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCartTable);

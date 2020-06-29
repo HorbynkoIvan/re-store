@@ -55,21 +55,18 @@ const reducer = (state = initialState, action) => {
         case 'BOOK_ADDED_TO_CARD':
             const bookId = action.payload;
             const book = state.books.find((item) => item.id === bookId);
-            const bookInCardIndex = state.cardItems.findIndex((card) => card.id === bookId);
+            let bookInCardIndex = state.cardItems.findIndex((card) => card.id === bookId);
             const bookInCard = state.cardItems[bookInCardIndex]; //return already exist card
 
             const newItem = updateCardItem(book, bookInCard);
-
             return {
                 ...state,
                 cardItems: updateCardItems(state.cardItems, newItem, bookInCardIndex)
             }
-        case 'BOOKS_COUNT_INCREASE_IN_CARD':
-            return {};
         case 'BOOKS_COUNT_DECREASE_IN_CARD':
-            return {};
-        case 'BOOKS_REMOVE_IN_CARD':
-            return {}
+            return {...state};
+        case 'BOOKS_REMOVE_FROM_CARD':
+            return {...state}
         default:
             return state;
     }

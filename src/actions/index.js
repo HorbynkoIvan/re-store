@@ -41,7 +41,7 @@ const booksCountDecrease = (bookId) => {
 
 const booksRemove = (bookId) => {
     return {
-        type: "BOOKS_REMOVE_IN_CARD",
+        type: "BOOKS_REMOVE_FROM_CARD",
         payload: bookId
     }
 }
