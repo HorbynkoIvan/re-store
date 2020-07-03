@@ -1,4 +1,11 @@
 const updateCardItems = (cardItems, item, idx) => {
+    if(item.count === 0){
+        return [
+            ...cardItems.slice(0, idx),
+            ...cardItems.slice(idx + 1),
+        ]
+    }
+
     if (idx === -1) {
         return [...cardItems, item]
     } else {
@@ -10,7 +17,7 @@ const updateCardItems = (cardItems, item, idx) => {
     }
 }
 
-const updateCardItem = (book, item = {}) => {
+const updateCardItem = (book, item = {}, quantity) => {
     const {
         id = book.id,
         title = book.title,
@@ -20,8 +27,21 @@ const updateCardItem = (book, item = {}) => {
     return {
         id,
         title,
-        count: count + 1,
-        total: total + book.price
+        count: count + quantity,
+        total: total + quantity * book.price
+    }
+}
+
+const updateOrder = (state, bookId, quantity) => {
+    const book = state.books.find((item) => item.id === bookId);
+    let bookInCardIndex = state.cardItems.findIndex((card) => card.id === bookId);
+    const bookInCard = state.cardItems[bookInCardIndex]; //return already exist card
+
+    const newItem = updateCardItem(book, bookInCard, quantity);
+    return {
+        ...state,
+        cardItems: updateCardItems(state.cardItems, newItem, bookInCardIndex)
+
     }
 }
 
@@ -53,18 +73,9 @@ const reducer = (state = initialState, action) => {
                 error: action.payload
             }
         case 'BOOK_ADDED_TO_CARD':
-            const bookId = action.payload;
-            const book = state.books.find((item) => item.id === bookId);
-            let bookInCardIndex = state.cardItems.findIndex((card) => card.id === bookId);
-            const bookInCard = state.cardItems[bookInCardIndex]; //return already exist card
-
-            const newItem = updateCardItem(book, bookInCard);
-            return {
-                ...state,
-                cardItems: updateCardItems(state.cardItems, newItem, bookInCardIndex)
-            }
+            return updateOrder(state, action.payload, 1)
         case 'BOOKS_COUNT_DECREASE_IN_CARD':
-            return {...state};
+            return updateOrder(state, action.payload, -1)
         case 'BOOKS_REMOVE_FROM_CARD':
             return {...state}
         default:
