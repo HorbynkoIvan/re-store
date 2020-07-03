@@ -1,11 +1,14 @@
 const updateCardItems = (cardItems, item, idx) => {
-    if(item.count === 0){
+
+    //remove elements
+    if (item.count === 0) {
         return [
             ...cardItems.slice(0, idx),
             ...cardItems.slice(idx + 1),
         ]
     }
 
+    //add elements or update
     if (idx === -1) {
         return [...cardItems, item]
     } else {
@@ -77,7 +80,8 @@ const reducer = (state = initialState, action) => {
         case 'BOOKS_COUNT_DECREASE_IN_CARD':
             return updateOrder(state, action.payload, -1)
         case 'BOOKS_REMOVE_FROM_CARD':
-            return {...state}
+            const item = state.cardItems.find((card) => card.id === action.payload);
+            return updateOrder(state, action.payload, -item.count);
         default:
             return state;
     }
