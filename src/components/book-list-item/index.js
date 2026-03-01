@@ -1,3 +1,3 @@
-import BookListItem from "./book-list-item";
+import BookListItem from "./book-list-item.jsx";
 
 export default BookListItem;
