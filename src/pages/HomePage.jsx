@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {BookListContainer} from "../../containers/bookListContainer.jsx";
+import {BookListContainer} from "../containers/bookListContainer.jsx";
 
 // import ShoppingCartTable from "../shopping-card-table";
 
