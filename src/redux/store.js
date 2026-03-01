@@ -1,8 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit'
-import quotesReducer from './reducers/qoutesSlice'
+import {configureStore} from '@reduxjs/toolkit'
+import booksReducer from './reducers/bookListSlice.js'
+import shippingCardReducer from './reducers/shoppingCardSlice.js'
 
 export const store = configureStore({
     reducer: {
-        quotes: quotesReducer,
+        books: booksReducer,
+        shippingCard: shippingCardReducer,
     },
 })

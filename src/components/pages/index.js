@@ -1,4 +1,4 @@
-import HomePage from "./home-page";
-import CardPage from "./card-page";
+import HomePage from "./home-page.jsx";
+import CardPage from "./card-page.jsx";
 
 export {HomePage, CardPage};

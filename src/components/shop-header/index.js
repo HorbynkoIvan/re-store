@@ -1,3 +1,3 @@
-import ShopHeader from "./shop-header";
+import ShopHeader from "./shop-header.jsx";
 
 export default ShopHeader;
