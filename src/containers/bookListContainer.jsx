@@ -44,8 +44,8 @@ import ErrorIndicator from "../components/error-indicator";
 //     withBookstoreService(),
 //     connect(mapStateToProps, mapDispatchToProps))(BookListContainer)
 
-export const BookListContainer = () => {
-  return(
-      <div>BookListContainer</div>
-  )
+export const BookListContainer = ({books}) => {
+    return (
+        <div>BookListContainer {books}</div>
+    )
 }

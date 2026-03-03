@@ -16,10 +16,9 @@ export default class BookstoreService {
         },
     ];
 
-    getBooks() {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => resolve(this.data), 1000)
-            //reject(new Error('Something wrong!!!'))
-        })
+    async getBooks() {
+        await new Promise(resolve => setTimeout(resolve, 1000))
+
+        return this.data
     }
 }

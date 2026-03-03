@@ -1,4 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit'
+import BookstoreService from "../../services/bookstore-service.js";
+
+const bookListService = new BookstoreService()
 
 const initialState = {
     isLoading: false,
